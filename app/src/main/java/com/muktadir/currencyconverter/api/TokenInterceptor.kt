@@ -8,9 +8,8 @@ class TokenInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()
 
-        if (BuildConfig.ApiKey != null
-            && (!originalRequest.url.toString().contains("apikey"))
-        ) {
+        if (BuildConfig.ApiKey != null)
+         {
             val builder = originalRequest.newBuilder()
             builder.addHeader("apikey", BuildConfig.ApiKey)
             val request = builder.build()

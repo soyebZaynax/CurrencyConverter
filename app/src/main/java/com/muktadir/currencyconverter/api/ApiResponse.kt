@@ -1,6 +1,5 @@
 package com.muktadir.currencyconverter.api
 
-import com.muktadir.currencyconverter.data.CurrencyRates
 import org.json.JSONArray
 import org.json.JSONObject
 import retrofit2.Response
@@ -8,7 +7,7 @@ import java.io.IOException
 
 class ApiException(message: String) : IOException(message)
 object ApiResponse {
-    suspend fun <T: Any> getResult(call: () -> CurrencyRates?): T{
+    suspend fun <T: Any> getResult(call: suspend () -> Response<T>): T{
 
         val response = try {
             call.invoke()
